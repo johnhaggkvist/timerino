@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+ 
+<html ng-app="helloApp">
+<head>
+  <title>HelloWorld</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script>
+    var helloApp = angular.module( "helloApp", [] );
+    helloApp.controller( "HelloCtrl", [ '$scope', function($scope) {
+      $scope.name = "ajitesh shukla";
+    }]);
+  </script>
+</head>
+ 
+<body ng-controller="HelloCtrl">
+  <div class="page-header">
+    <h1>Hello World Sample Program</h1>
+  </div>
+  <div>
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+          <label class="col-md-2 control-label">Type Your Name</label>
+          <div class="col-md-4">
+               <input type="text" ng-model="name"  class="form-control" value="{{name}}"/>
+               <span>Hello {{ name }}!</span>
+          </div>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
