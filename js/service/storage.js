@@ -1,14 +1,10 @@
 angular.module("timerino.Storage", []).
-factory("storageService", ['', function() {
-  console.log("starting StorageService");
-  
+factory("StorageService", [function() {
   function pullFromStorage(profile) {
     if ('localStorage' in window && window['localStorage'] !== null) {
       return JSON.parse(localStorage.getItem("timerino_profile_" + profile));
     }
-    return {
-      times: []
-    };
+    return null;
   }
 
   function pushToStorage(profile, data) {
@@ -19,19 +15,27 @@ factory("storageService", ['', function() {
 
   var profile = "timerino";
 
-  var storageService = {
+  var StorageService = {
     putTime: function (time) {
-      var everything = pullFromStorage(profile);
-      everything.times.push({
+      var everything = this.getEverything(profile);
+      everything.times.unshift({
         timed: time,
         when: new Date().getTime()
       });
       pushToStorage(profile, everything);
     },
-    getTimes: function () {
+    getEverything: function (profile) {
       var everything = pullFromStorage(profile);
+      if (everything)
+        return everything;
+      return {
+        times: []
+      };
+    },
+    getTimes: function () {
+      var everything = this.getEverything(profile);
       return everything.times;
     }
   };
-  return storageService;
+  return StorageService;
 }]);
