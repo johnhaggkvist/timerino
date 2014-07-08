@@ -2,7 +2,7 @@
  
 <html ng-app="timerinoApp">
 <head>
-  <title>HelloWorld</title>
+  <title>Timerino</title>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
   <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -62,13 +62,28 @@
   </script>
 
   <style>
-    .timed { font-family: 'PT Mono'; font-size: 300px; }
+    html, body { 
+      height: 100%; 
+      margin: 0px; 
+      padding: 0px;
+    }
+    .timed { 
+      font-family: 'PT Mono'; 
+      font-size: 300px; 
+    }
+    .valigned {
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
   </style>
 </head>
  
 <body ng-controller="TimerCtrl" ng-keydown="keydown($event)" ng-keyup="keyup($event)">
   <div class="timed">
-    <center><h1>{{timed}}</h1></center>
+    <center>{{timed}}</center>
   </div>
 </body>
 </html>
