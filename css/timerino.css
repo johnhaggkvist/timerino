@@ -1,0 +1,18 @@
+html, body { 
+  height: 100%; 
+  margin: 0px; 
+  padding: 0px;
+}
+
+.timed { 
+  font-family: 'PT Mono'; 
+  font-size: 200px; 
+}
+
+.valigned {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

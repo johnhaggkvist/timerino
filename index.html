@@ -3,84 +3,15 @@
 <html ng-app="timerinoApp">
 <head>
   <title>Timerino</title>
+  <link rel="stylesheet" href="css/timerino.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
   <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  <script>
-    var timerinoApp = angular.module("timerinoApp", []);
-    timerinoApp.controller("TimerCtrl", ['$scope', function($scope) {
-      var start = undefined,
-          holding = false, 
-          starting = false;
-     $scope.timed = "T:im:er:ino"
+  <script src="js/timerino.js"></script>
+ </head>
 
-      function formatTime(millis) {
-        function _zeropad(num, len) {
-          num = '' + num;
-          while (num.length < len) {
-            num = '0' + num;
-          }
-          return num;
-        }
-        var seconds = Math.floor(millis / 1000);
-        millis = _zeropad(millis % 1000, 3);
-        var minutes = Math.floor(seconds / 60);
-        seconds = _zeropad(seconds % 60, 2);
-        var hours = Math.floor(minutes / 60);
-        minutes = _zeropad(minutes % 60, 2);
-        return (hours ? _zeropad(hours, 2) + ':' : '') + minutes + ':' + seconds + ':' + millis;
-      }
-
-      $scope.keydown = function ($event) {
-        if ($event.which === 32) {
-          if (!holding) {
-            if (start) {
-              $scope.timed = formatTime($event.timeStamp - start);
-              start = undefined;
-              holding = true;
-            } else if (!start) {
-              holding = true;
-              starting = true;
-              $scope.timed = 'Waiting...';
-            }
-          }
-        }
-      };
-      $scope.keyup = function ($event) {
-        if ($event.which === 32) {
-          if (!start && starting) {
-            start = $event.timeStamp;
-            starting = false;
-            $scope.timed = 'Timing!';
-          }
-          holding = false;
-        }
-      };
-    }]);
-  </script>
-
-  <style>
-    html, body { 
-      height: 100%; 
-      margin: 0px; 
-      padding: 0px;
-    }
-    .timed { 
-      font-family: 'PT Mono'; 
-      font-size: 200px; 
-    }
-    .valigned {
-      position: relative;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
-    }
-  </style>
-</head>
- 
 <body ng-controller="TimerCtrl" ng-keydown="keydown($event)" ng-keyup="keyup($event)">
   <div class="timed valigned">
     <center>{{timed}}</center>
