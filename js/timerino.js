@@ -1,7 +1,9 @@
-angular.module('timerino.Timer', []);
+angular.module('timerino.Storage', []);
+angular.module('timerino.Timer', ['timerino.Storage']);
 
 angular.module('timerino', [
   'timerino.Timer',
+  'timerino.Storage',
   'ngRoute'
 ]).
 config(['$routeProvider', function ($routeProvider) {
