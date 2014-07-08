@@ -4,6 +4,11 @@ html, body {
   padding: 0px;
 }
 
+ul {
+  list-style-type: none;
+  font-family: 'PT Mono';
+}
+
 .timed { 
   font-family: 'PT Mono'; 
   font-size: 200px; 
