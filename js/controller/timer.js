@@ -29,7 +29,6 @@ controller("TimerCtrl", ['$scope', '$document', function($scope, $document) {
   });
 
   $document.bind('keyup', function ($event) {
-    console.log('up',$event, start, starting);
     if ($event.which === 32) {
       if (!start && starting) {
         start = $event.timeStamp;
