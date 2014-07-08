@@ -1,3 +1,11 @@
   <div class="timed valigned">
-    <center>{{timed}}</center>
+    <center>{{timed | timed}}</center>
   </div>
+
+<div>
+	<ul>
+		<li ng-repeat="time in latest">
+			{{time.timed | timed}} {{time.when | date:'yyyy-MM-dd HH:mm:ss'}}
+		</li>
+	</ul>
+</div>

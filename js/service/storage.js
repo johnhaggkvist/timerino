@@ -35,6 +35,12 @@ factory("StorageService", [function() {
     getTimes: function () {
       var everything = this.getEverything(profile);
       return everything.times;
+    },
+    getLatest: function (number) {
+      var times = this.getTimes();
+      if (times.length > number)
+        return times.slice(0, number);
+      return times;
     }
   };
   return StorageService;
