@@ -1,5 +1,5 @@
-angular.module("timerino.Timer", []).
-controller("TimerCtrl", ['$scope', '$document', function($scope, $document) {
+angular.module("timerino.Timer", ['timerino.Storage']).
+controller("TimerCtrl", ['$scope', '$document', 'storageService', function($scope, $document, storageService) {
   var start = undefined,
       holding = false, 
       starting = false;
