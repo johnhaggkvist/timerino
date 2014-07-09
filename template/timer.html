@@ -1,3 +1,7 @@
+<div class="timed">
+  <center>{{timed | timed}}</center>
+</div>
+
 <div>
 	<ul>
 		<li ng-repeat="time in latest">
@@ -5,8 +9,4 @@
 		</li>
 	</ul>
 	<a ng-if="latestShareToken" href="#/shared/{{latestShareToken}}">Share times!</a>
-</div>
-
-<div class="timed">
-  <center><a href="#/">Try:it!</a></center>
 </div>
