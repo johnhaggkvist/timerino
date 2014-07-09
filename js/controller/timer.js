@@ -2,7 +2,8 @@ angular.module("timerino.Timer", ['timerino.Storage', 'timerino.Directives', 'ti
 controller("TimerCtrl", ['$scope', '$document', 'StorageService', 'TokenService', 'TimesService', function($scope, $document, StorageService, TokenService, TimesService) {
   var start = undefined,
       holding = false, 
-      starting = false;
+      starting = false,
+      saving = false;
   setTimed("T:im:er:ino", true);
   updateLatestTimes(true);
 
@@ -31,13 +32,17 @@ controller("TimerCtrl", ['$scope', '$document', 'StorageService', 'TokenService'
   }
 
   $document.bind('keydown', function ($event) {
-    if ($event.which === 32) {
+    if ($event.which === 32 && !saving) {
       if (!holding) {
         if (start) {
           var timed = $event.timeStamp - start;
           start = undefined;
           holding = true;
-          timingDone(timed);
+          if (!saving) {
+            saving = true;
+            timingDone(timed);
+            saving = false;
+          }
         } else if (!start) {
           holding = true;
           starting = true;
@@ -48,7 +53,7 @@ controller("TimerCtrl", ['$scope', '$document', 'StorageService', 'TokenService'
   });
 
   $document.bind('keyup', function ($event) {
-    if ($event.which === 32) {
+    if ($event.which === 32 && !saving) {
       if (!start && starting) {
         start = $event.timeStamp;
         starting = false;
