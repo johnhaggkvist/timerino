@@ -1,12 +1,22 @@
-<div class="timed">
+<div class="row timed">
   <center>{{timed | timed}}</center>
 </div>
 
-<div>
-	<ul>
-		<li ng-repeat="time in latest">
-			{{time.timed | timed}} {{time.when | date:'yyyy-MM-dd HH:mm:ss'}}
-		</li>
-	</ul>
-	<a ng-if="latestShareToken" href="#/shared/{{latestShareToken}}">Share times!</a>
+<div class="row">
+	<div class="col-md-4">
+		<ul>
+			<li ng-repeat="time in times">
+				{{time.timed | timed}} {{time.when | date:'yyyy-MM-dd HH:mm:ss'}}
+			</li>
+		</ul>
+		<a ng-if="latestShareToken" href="#/shared/{{latestShareToken}}">Share times!</a>
+	</div>
+	<div class="col-md-4">
+		best of five
+		<h3>{{average | timed}}</h3>
+	</div>
+	<div class="col-md-4">
+		competetive best of five
+		<h3>{{competetiveAverage | timed}}</h3>
+	</div>
 </div>

@@ -1,11 +1,21 @@
-<div class="timed">
+<div class="row timed">
   <center><a href="#/">Try:it!</a></center>
 </div>
-These are my latest 5 times!
-<div>
-	<ul>
-		<li ng-repeat="time in data.times">
-			{{time.timed | timed}} {{time.when | date:'yyyy-MM-dd HH:mm:ss'}}
-		</li>
-	</ul>
+
+<div class="row">
+	<div class="col-md-4">
+		<ul>
+			<li ng-repeat="time in times">
+				{{time.timed | timed}} {{time.when | date:'yyyy-MM-dd HH:mm:ss'}}
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-4">
+		best of five
+		<h3>{{average | timed}}</h3>
+	</div>
+	<div class="col-md-4">
+		competetive best of five
+		<h3>{{competetiveAverage | timed}}</h3>
+	</div>
 </div>

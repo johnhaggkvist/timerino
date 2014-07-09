@@ -1,5 +1,6 @@
 angular.module('timerino.Storage', []);
 angular.module('timerino.Token', []);
+angular.module('timerino.Times', []);
 angular.module('timerino.Directives', []);
 angular.module('timerino.Timer', ['timerino.Directives', 'timerino.Storage', 'timerino.Token']);
 angular.module('timerino.Shared', ['timerino.Directives', 'timerino.Token']);
@@ -10,6 +11,7 @@ angular.module('timerino', [
   'timerino.Shared',
   'timerino.Storage',
   'timerino.Token',
+  'timerino.Times',
   'timerino.Directives',
   'ngRoute'
 ]).

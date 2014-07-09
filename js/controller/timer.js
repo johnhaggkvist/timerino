@@ -1,5 +1,5 @@
-angular.module("timerino.Timer", ['timerino.Storage', 'timerino.Directives', 'timerino.Token']).
-controller("TimerCtrl", ['$scope', '$document', 'StorageService', 'TokenService', function($scope, $document, StorageService, TokenService) {
+angular.module("timerino.Timer", ['timerino.Storage', 'timerino.Directives', 'timerino.Token', 'timerino.Times']).
+controller("TimerCtrl", ['$scope', '$document', 'StorageService', 'TokenService', 'TimesService', function($scope, $document, StorageService, TokenService, TimesService) {
   var start = undefined,
       holding = false, 
       starting = false;
@@ -21,9 +21,12 @@ controller("TimerCtrl", ['$scope', '$document', 'StorageService', 'TokenService'
   function updateLatestTimes(doNotApply) {
     var amount = 5;
     var latest = StorageService.getLatest(amount);
-    $scope.latest = latest;
-    $scope.latestShareToken = (latest.length == amount ? TokenService.tokenTimes($scope.latest) : undefined);
-    
+    $scope.latestShareToken = (latest.length == amount ? TokenService.tokenTimes(latest) : undefined);
+
+    $scope.times = latest;
+    $scope.average = TimesService.average(latest);
+    $scope.competetiveAverage = TimesService.competetiveAverage(latest);
+
     if (!doNotApply) $scope.$apply();
   }
 

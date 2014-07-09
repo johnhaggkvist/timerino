@@ -2,13 +2,14 @@ html, body {
   height: 100%; 
   margin: 0px; 
   padding: 0px;
+}
 
-  font-family: 'PT Mono';
+body {
+    font-family: 'PT Mono';
 }
 
 ul {
   list-style-type: none;
-  font-family: 'PT Mono';
 }
 
 .timed { 
