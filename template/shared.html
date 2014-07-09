@@ -1,0 +1,8 @@
+These are my latest 5 times!
+<div>
+	<ul>
+		<li ng-repeat="time in data.times">
+			{{time.timed | timed}} {{time.when | date:'yyyy-MM-dd HH:mm:ss'}}
+		</li>
+	</ul>
+</div>
