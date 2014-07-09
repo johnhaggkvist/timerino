@@ -7,10 +7,10 @@ factory("TokenService", [function() {
         if (times[i].timed < minTimed) minTimed = times[i].timed;
         if (times[i].when < minWhen) minWhen = times[i].when;
     }
-    var output = ["t", new Date().getTime() - minWhen, minWhen, minTimed];
+    var output = ["t", (new Date().getTime() - minWhen).toString(16), (minWhen).toString(16), (minTimed).toString(16)];
     for (var i = 0; i < times.length; i++) {
-        output.push(times[i].when - minWhen);
-        output.push(times[i].timed - minTimed);
+        output.push((times[i].when - minWhen).toString(16));
+        output.push((times[i].timed - minTimed).toString(16));
     }
     return output.join(",");
   }
@@ -20,9 +20,9 @@ factory("TokenService", [function() {
     if (input.length < 4) return "invalid";
 
     var type = input[0],
-        minWhen = parseInt(input[2], 10),
-        minTimed = parseInt(input[3], 10),
-        when = parseInt(input[1], 10) + minWhen;
+        minWhen = parseInt(input[2], 16),
+        minTimed = parseInt(input[3], 16),
+        when = parseInt(input[1], 16) + minWhen;
 
     var output = {
         when: when,
@@ -30,8 +30,8 @@ factory("TokenService", [function() {
     };
     for (var i = 4; i + 1 < input.length; i += 2) {
         output.times.push({
-            when: parseInt(input[i], 10) + minWhen,
-            timed: parseInt(input[i + 1], 10) + minTimed
+            when: parseInt(input[i], 16) + minWhen,
+            timed: parseInt(input[i + 1], 16) + minTimed
         });
     }
 
