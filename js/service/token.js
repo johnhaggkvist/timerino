@@ -1,5 +1,6 @@
 angular.module("timerino.Token", []).
 factory("TokenService", [function() {
+  var base = 36;
   function buildMiniTimesToken(times) {
     var minTimed = Number.MAX_VALUE;
     var minWhen = Number.MAX_VALUE;
@@ -7,10 +8,10 @@ factory("TokenService", [function() {
         if (times[i].timed < minTimed) minTimed = times[i].timed;
         if (times[i].when < minWhen) minWhen = times[i].when;
     }
-    var output = ["t", (new Date().getTime() - minWhen).toString(16), (minWhen).toString(16), (minTimed).toString(16)];
+    var output = ["t", (new Date().getTime() - minWhen).toString(base), (minWhen).toString(base), (minTimed).toString(base)];
     for (var i = 0; i < times.length; i++) {
-        output.push((times[i].when - minWhen).toString(16));
-        output.push((times[i].timed - minTimed).toString(16));
+        output.push((times[i].when - minWhen).toString(base));
+        output.push((times[i].timed - minTimed).toString(base));
     }
     return output.join(",");
   }
@@ -20,9 +21,9 @@ factory("TokenService", [function() {
     if (input.length < 4) return "invalid";
 
     var type = input[0],
-        minWhen = parseInt(input[2], 16),
-        minTimed = parseInt(input[3], 16),
-        when = parseInt(input[1], 16) + minWhen;
+        minWhen = parseInt(input[2], base),
+        minTimed = parseInt(input[3], base),
+        when = parseInt(input[1], base) + minWhen;
 
     var output = {
         when: when,
@@ -30,8 +31,8 @@ factory("TokenService", [function() {
     };
     for (var i = 4; i + 1 < input.length; i += 2) {
         output.times.push({
-            when: parseInt(input[i], 16) + minWhen,
-            timed: parseInt(input[i + 1], 16) + minTimed
+            when: parseInt(input[i], base) + minWhen,
+            timed: parseInt(input[i + 1], base) + minTimed
         });
     }
 
