@@ -24,6 +24,10 @@ ul {
   cursor: hand;
 }
 
+.when {
+  color: #ccc;
+}
+
 .valigned {
   position: relative;
   top: 50%;
