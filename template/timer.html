@@ -9,7 +9,8 @@
 				{{time.timed | timed}} {{time.when | date:'yyyy-MM-dd HH:mm:ss'}}
 			</li>
 		</ul>
-		<a ng-if="latestShareToken" href="#/shared/{{latestShareToken}}">Share times!</a>
+		<a ng-if="latestShareToken" href="#/shared/{{latestShareToken}}">Share times!</a> | 
+		<a href="#/history">History</a>
 	</div>
 	<div class="col-md-4" ng-if="latestShareToken" >
 		average of five

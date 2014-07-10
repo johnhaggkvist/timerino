@@ -1,0 +1,14 @@
+<div class="row timed">
+  <center><a href="#/">T:im:er:ino</a></center>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<ul>
+			<li ng-repeat="time in times">
+				{{time.timed | timed}} {{time.when | date:'yyyy-MM-dd HH:mm:ss'}} <a class="kill" ng-click="killTime($index, time)">x</a>
+			</li>
+		</ul>
+		<a href="#/">Back</a>
+	</div>
+</div>

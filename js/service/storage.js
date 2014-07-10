@@ -41,6 +41,16 @@ factory("StorageService", [function() {
       if (times.length > number)
         return times.slice(0, number);
       return times;
+    },
+    killTime: function (index, time) {
+      var everything = this.getEverything(profile);
+      if (everything.times.length > index) {
+        var foundTime = everything.times[index];
+        if (foundTime && foundTime.timed === time.timed && foundTime.when === time.when) {
+          everything.times.splice(index, 1);
+          pushToStorage(profile, everything);
+        }
+      }
     }
   };
   return StorageService;
