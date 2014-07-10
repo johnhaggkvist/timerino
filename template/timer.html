@@ -10,7 +10,7 @@
 			</li>
 		</ul>
 		<a ng-if="latestShareToken" href="#/shared/{{latestShareToken}}">Share times!</a> | 
-		<a href="#/history">History</a>
+		<a ng-if="times.length" href="#/history">History</a>
 	</div>
 	<div class="col-md-4" ng-if="latestShareToken" >
 		average of five
