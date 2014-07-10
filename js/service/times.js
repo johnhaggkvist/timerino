@@ -6,7 +6,8 @@ factory("TimesService", [function() {
     arr.sort(function (a, b) {
       return a.timed - b.timed;
     });
-    return arr.slice(1, arr.length);
+
+    return arr.slice(1, arr.length - 1);
   }
 
   function getAverage(times) {
