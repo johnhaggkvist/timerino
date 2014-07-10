@@ -6,7 +6,7 @@
 	<div class="col-md-4">
 		<ul>
 			<li ng-repeat="time in times">
-				{{time.timed | timed}} {{time.when | date:'yyyy-MM-dd HH:mm:ss'}} <a class="kill" ng-click="killTime($index, time)">x</a>
+				{{time.timed | timed}} <span class="when">{{time.when | date:'yyyy-MM-dd HH:mm:ss'}}</span> <a class="kill" ng-click="killTime($index, time)">x</a>
 			</li>
 		</ul>
 		<a href="#/">Back</a>
