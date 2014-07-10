@@ -4,7 +4,8 @@ controller("TimerCtrl", ['$scope', '$document', '$location', 'StorageService', '
   var start = undefined,
       holding = false, 
       starting = false,
-      saving = false;
+      saving = false,
+      bound = false;
   setTimed("T:im:er:ino", true);
   updateLatestTimes(true);
 
@@ -36,7 +37,16 @@ controller("TimerCtrl", ['$scope', '$document', '$location', 'StorageService', '
     return $event.which === 32 && !saving && $location.path() === '/timer'
   }
 
-  $document.bind('keydown', function ($event) {
+  $scope.$on('$destroy', function () {
+    $document.off('keydown.timerino', keydownHandler);
+    $document.off('keyup.timerino', keyupHandler);
+  });
+
+  $document.bind('keydown.timerino', keydownHandler);
+
+  $document.bind('keyup.timerino', keyupHandler);
+
+  function keydownHandler($event) {
     if (keyIsGood($event)) {
       if (!holding) {
         if (start) {
@@ -55,9 +65,9 @@ controller("TimerCtrl", ['$scope', '$document', '$location', 'StorageService', '
         }
       }
     }
-  });
+  }
 
-  $document.bind('keyup', function ($event) {
+  function keyupHandler($event) {
     if (keyIsGood($event)) {
       if (!start && starting) {
         start = $event.timeStamp;
@@ -66,5 +76,5 @@ controller("TimerCtrl", ['$scope', '$document', '$location', 'StorageService', '
       }
       holding = false;
     }
-  });
+  }
 }]);
