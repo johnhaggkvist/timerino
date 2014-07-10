@@ -1,5 +1,6 @@
 angular.module("timerino.Timer", ['timerino.Storage', 'timerino.Directives', 'timerino.Token', 'timerino.Times']).
-controller("TimerCtrl", ['$scope', '$document', 'StorageService', 'TokenService', 'TimesService', function($scope, $document, StorageService, TokenService, TimesService) {
+controller("TimerCtrl", ['$scope', '$document', '$location', 'StorageService', 'TokenService', 'TimesService', 
+  function($scope, $document, $location, StorageService, TokenService, TimesService) {
   var start = undefined,
       holding = false, 
       starting = false,
@@ -31,8 +32,12 @@ controller("TimerCtrl", ['$scope', '$document', 'StorageService', 'TokenService'
     if (!doNotApply) $scope.$apply();
   }
 
+  function keyIsGood($event) {
+    return $event.which === 32 && !saving && $location.path() === '/timer'
+  }
+
   $document.bind('keydown', function ($event) {
-    if ($event.which === 32 && !saving) {
+    if (keyIsGood($event)) {
       if (!holding) {
         if (start) {
           var timed = $event.timeStamp - start;
@@ -53,7 +58,7 @@ controller("TimerCtrl", ['$scope', '$document', 'StorageService', 'TokenService'
   });
 
   $document.bind('keyup', function ($event) {
-    if ($event.which === 32 && !saving) {
+    if (keyIsGood($event)) {
       if (!start && starting) {
         start = $event.timeStamp;
         starting = false;
