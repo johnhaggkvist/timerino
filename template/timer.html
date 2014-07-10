@@ -11,11 +11,11 @@
 		</ul>
 		<a ng-if="latestShareToken" href="#/shared/{{latestShareToken}}">Share times!</a>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4" ng-if="latestShareToken" >
 		average of five
 		<h3>{{average | timed}}</h3>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4" ng-if="latestShareToken" >
 		competetive average of five
 		<h3>{{competetiveAverage | timed}}</h3>
 	</div>
