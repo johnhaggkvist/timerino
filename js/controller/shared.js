@@ -3,6 +3,9 @@ controller("SharedCtrl", ['$scope', '$routeParams', 'TokenService', 'TimesServic
   if ($routeParams.token) {
     var data = TokenService.unpackToken($routeParams.token);
     $scope.times = data.times;
+    $scope.best = data.best;
+    $scope.bestest = data.best[0];
+    
     $scope.average = TimesService.average(data.times);
     $scope.competetiveAverage = TimesService.competetiveAverage(data.times);
   }

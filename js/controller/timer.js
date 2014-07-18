@@ -24,9 +24,13 @@ controller("TimerCtrl", ['$scope', '$document', '$location', 'StorageService', '
   function updateLatestTimes(doNotApply) {
     var amount = 5;
     var latest = StorageService.getLatest(amount);
-    $scope.latestShareToken = (latest.length == amount ? TokenService.tokenTimes(latest) : undefined);
+    var best = StorageService.getBest(amount);
+
+    $scope.latestShareToken = (latest.length == amount ? TokenService.tokenTimes(latest, best) : undefined);
 
     $scope.times = latest;
+    $scope.best = best;
+
     $scope.average = TimesService.average(latest);
     $scope.competetiveAverage = TimesService.competetiveAverage(latest);
 

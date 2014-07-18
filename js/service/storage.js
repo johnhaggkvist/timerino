@@ -42,6 +42,15 @@ factory("StorageService", [function() {
         return times.slice(0, number);
       return times;
     },
+    getBest: function (number) {
+      var times = this.getTimes();
+      times.sort(function (a, b) {
+        return a.timed - b.timed;
+      });
+      if (times.length > number)
+        return times.slice(0, number);
+      return times;
+    },
     killTime: function (index, time) {
       var everything = this.getEverything(profile);
       if (everything.times.length > index) {

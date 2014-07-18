@@ -1,21 +1,35 @@
 <div class="row timed">
-  <center><a href="#/">Try:it!</a></center>
+  <center><a href="#/">{{bestest.timed | timed}} </a></center>
 </div>
 
 <div class="row">
-	<div class="col-md-4">
+	<div class="col-md-3">
 		<ul>
+			<li>Latest times</li>
 			<li ng-repeat="time in times">
 				{{time.timed | timed}} <span class="when">{{time.when | date:'yyyy-MM-dd HH:mm:ss'}}</span>
 			</li>
 		</ul>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-3">
 		average of five
 		<h3>{{average | timed}}</h3>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-3">
 		competetive average of five
 		<h3>{{competetiveAverage | timed}}</h3>
 	</div>
+	<div class="col-md-3">
+		<ul>
+			<li>Best times</li>
+			<li ng-repeat="time in best">
+				{{time.timed | timed}} <span class="when">{{time.when | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="row">
+	<center>
+		<a href="#/">Try it!</a>
+	</center>
 </div>

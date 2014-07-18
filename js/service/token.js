@@ -102,22 +102,26 @@ factory("TokenService", [function() {
 
     var output = {
         when: when,
-        times: []
+        times: [],
+        best: []
     };
     for (var i = 3; i + 1 < input.length; i += 2) {
-        output.times.push({
-            when: input[i] + minWhen,
-            timed: input[i + 1] + minTimed
-        });
+      var destination = (i < 3 + (input.length - 3) / 2) ? output.times : output.best;
+      destination.push({
+          when: input[i] + minWhen,
+          timed: input[i + 1] + minTimed
+      });
     }
 
     return output;
   }
 
   var TokenService = {
-    TYPE_TIMES: 'times',
-    tokenTimes: function (times) {
-      return buildMiniTimesToken(times);
+    tokenTimes: function (latest, best) {
+      if (latest.length != best.length) {
+        throw Error("Cannot merge times of different lenghts.");
+      }
+      return buildMiniTimesToken(latest.concat(best));
     },
     unpackToken: function (token) {
       return parseMiniTimesToken(token);
